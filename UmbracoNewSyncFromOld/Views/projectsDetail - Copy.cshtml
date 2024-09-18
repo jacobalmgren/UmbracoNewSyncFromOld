@@ -1,0 +1,159 @@
+﻿@using Umbraco.Cms.Web.Common.PublishedModels;
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage
+
+@{
+    Layout = "mainLayout.cshtml";
+
+    var currentProjectTitle = Model.Value<string>("projectTitle");
+    var currentProjectImageUrl = Model.Value<IPublishedContent>("projectImage")?.Url();
+    var currentProjectDate = Model.Value<DateTime>("projectDate").ToString("MMMM dd, yyyy");
+    var currentProjectDateImageUrl = Model.Value<IPublishedContent>("projectDateImage")?.Url();
+    var currentProjectDescription = Model.Value<string>("projectDescription");
+    var currentProjectTags = Model.Value<IEnumerable<string>>("projectTags") ?? Enumerable.Empty<string>();
+
+    var allProjects = Model.Parent.ChildrenOfType("projectsDetail").ToList();
+
+    var ProjectsSectionTitle = Model.Root().Value<string>("ProjectsSectionTitle") ?? "Recent Projects";
+    var tagSectionTitle = "Tags";
+
+    var globalProjectTags = Model.Root().Value<IEnumerable<string>>("globalProjectTags") ?? Enumerable.Empty<string>();
+
+    var mainHeadline = Model.Value<string>("mainHeadline");
+    var mainImageUrl = Model.Value<IPublishedContent>("mainImage")?.Url();
+    var secondaryHeadline = Model.Value<string>("secondaryHeadline");
+    var richTextList = Model.Value<string>("richTextList");
+    var imageWithTextHeadline = Model.Value<string>("imageWithTextHeadline");
+    var imageWithText = Model.Value<IPublishedContent>("imageWithText")?.Url();
+    var imageWithTextDescription = Model.Value<string>("imageWithTextDescription");
+    var tertiaryHeadline = Model.Value<string>("tertiaryHeadline");
+    var tertiaryText = Model.Value<string>("tertiaryText");
+    var additionalImage = Model.Value<IPublishedContent>("additionalImage")?.Url();
+    var quaternaryHeadline = Model.Value<string>("quaternaryHeadline");
+    var quaternaryText = Model.Value<string>("quaternaryText");
+    var tagsSectionHeadline = "Tags:";
+}
+
+@Html.Partial("headerSectionPartial")
+
+<section id="projects-section" class="projects-section">
+    <div class="projects-container">
+        
+        <div class="container-left" style="padding-right: 60px;">
+            <div style="display: flex; align-items: center; margin-bottom: 10px;">
+                @if (!string.IsNullOrEmpty(currentProjectDateImageUrl))
+                {
+                    <img src="@currentProjectDateImageUrl" alt="Date Icon" style="width: 16px; height: 16px; margin-right: 10px;" />
+                }
+                <p style="font-size: 14px; color: #9C9EA6;">@currentProjectDate</p>
+            </div>
+
+            <h1 style="font-size: 14px; margin-bottom: 15px;">@mainHeadline</h1>
+
+            @if (!string.IsNullOrEmpty(mainImageUrl))
+            {
+                <img src="@mainImageUrl" alt="@mainHeadline" class="main-image" style="width: 100%; height: auto; margin-bottom: 20px;" />
+            }
+
+            <h2 style="font-size: 18px; margin-bottom: 10px;">@secondaryHeadline</h2>
+
+            <div class="rich-text-list" style="margin-bottom: 20px; font-size: 14px; padding-left: 20px;">
+                @Html.Raw(richTextList)
+            </div>
+
+            <div style="display: flex; margin-bottom: 20px;">
+                @if (!string.IsNullOrEmpty(imageWithText))
+                {
+                    <img src="@imageWithText" alt="Image with text" style="width: 40%; margin-right: 20px;" />
+                }
+                <div style="flex-grow: 1; font-size: 14px;">
+                    @if (!string.IsNullOrEmpty(imageWithTextHeadline))
+                    {
+                        <h3 style="font-size: 18px; margin-bottom: 10px;">@imageWithTextHeadline</h3>
+                    }
+                    <p>@Html.Raw(imageWithTextDescription?.Replace("\n", "<br />"))</p>
+                </div>
+            </div>
+
+            <h3 style="font-size: 18px; margin-bottom: 10px;">@tertiaryHeadline</h3>
+            <p style="font-size: 14px; margin-bottom: 30px;">@Html.Raw(tertiaryText?.Replace("\n", "<br />"))</p>
+
+            @if (!string.IsNullOrEmpty(additionalImage))
+            {
+                <img src="@additionalImage" alt="Additional image" style="width: 100%; height: auto; margin-bottom: 20px;" />
+            }
+
+            <h4 style="font-size: 18px; margin-bottom: 10px;">@quaternaryHeadline</h4>
+            <p style="font-size: 14px;">@Html.Raw(quaternaryText?.Replace("\n", "<br />"))</p>
+
+            <div style="display: flex; align-items: center; margin-top: 20px;">
+                <h4 style="margin-right: 10px; font-size: 14px;">@tagsSectionHeadline</h4>
+                <div>
+                    @foreach (var tag in Model.Value<IEnumerable<string>>("tags") ?? Enumerable.Empty<string>())
+                    {
+                        <span class="tag" style="display: inline-block; margin-right: 5px; padding: 5px 10px; border: none; border-radius: 20px; background-color: #F2EDDC; color: #4F5955; font-size: 14px;">
+                            @tag
+                        </span>
+                    }
+                </div>
+            </div>
+        </div>
+
+        <div class="container-right">
+            <div class="divider-vertical"></div>
+
+            <div class="project-details-recent-projects-section" style="margin-left: 10px;">
+                <h3 class="tags-title">@ProjectsSectionTitle</h3>
+                <div class="project-details-projects-grid">
+                    @foreach (var project in allProjects)
+                    {
+                        var projectTitle = project.Value<string>("projectTitle");
+                        var projectImage = project.Value<IPublishedContent>("projectImage")?.Url();
+                        var projectDetailUrl = project.Url();
+                        var projectDate = project.Value<DateTime>("projectDate").ToString("MMMM dd, yyyy");
+                        var projectDateImage = project.Value<IPublishedContent>("projectDateImage")?.Url();
+
+                        <a href="@projectDetailUrl" class="project-details-recent-project-item" style="text-decoration: none; color: inherit;">
+                            <div class="project-details-item-content" style="display: flex; align-items: left;">
+                                <div class="project-details-image-wrapper" style="flex: 0 0 150px;">
+                                    <img src="@projectImage" alt="@projectTitle" class="project-details-recent-project-image" style="width: 130px; height: 80px;" />
+                                </div>
+                                <div class="project-details-project-info">
+                                    <h4 class="project-details-recent-project-title">@projectTitle</h4>
+                                    <div style="display: flex; align-items: left;">
+                                        @if (!string.IsNullOrEmpty(projectDateImage))
+                                        {
+                                            <img src="@projectDateImage" alt="Date Icon" class="project-details-date-icon" style="width: 16px; height: 16px; margin-right: 5px; margin-top: 5px;" />
+                                        }
+                                        <p class="project-details-project-date" style="font-size: 14px; color: #9C9EA6; margin-top: 5px;">@projectDate</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+
+                        @if (project != allProjects.Last())
+                        {
+                            <div class="project-details-horizontal-divider" style="width: 100%; height: 1px; background-color: #ECECEC; margin: 20px 0;"></div>
+                        }
+                    }
+                </div>
+            </div>
+
+            <div class="tags-section">
+                <h3 class="tags-title" style="margin-top: 20px;">@tagSectionTitle</h3>
+                <div class="tags-container">
+                    @foreach (var tag in currentProjectTags)
+                    {
+                        <span class="tag">@tag</span>
+                    }
+
+                    @foreach (var globalTag in globalProjectTags)
+                    {
+                        <span class="tag">@globalTag</span>
+                    }
+                </div>
+                @Html.Partial("ServiceEmailFormPartial")
+            </div>
+        </div>
+    </div>
+</section>
+@Html.Partial("contactSectionPartial")

@@ -1,0 +1,28 @@
+﻿footer {
+    background-color: black;
+    color: #4F5955;
+    padding: 20px 0;
+}
+
+    footer .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 15px;
+        text-align: left;
+    }
+
+    footer .copyright,
+    footer .credits {
+        margin: 0;
+        font-size: 0.9rem;
+        display: inline;
+    }
+
+        footer .credits a {
+            color: #D9C3A9;
+            text-decoration: none;
+        }
+
+            footer .credits a:hover {
+                color: #0056b3;
+            }

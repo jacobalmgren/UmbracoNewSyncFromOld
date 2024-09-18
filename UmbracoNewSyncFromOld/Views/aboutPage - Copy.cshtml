@@ -1,0 +1,102 @@
+﻿@using Umbraco.Cms.Web.Common.PublishedModels;
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage
+
+@{
+    Layout = "mainLayout.cshtml";
+
+    var aboutHeadline = Model.Value<string>("aboutHeadline") ?? "About Us";
+    var aboutBackToHomepage = Model.Value<IPublishedContent>("aboutBackToHomepage");
+    var aboutPagepicker = Model.Value<IPublishedContent>("aboutPagepicker");
+    var aboutBackgroundImage = Model.Value<IPublishedContent>("aboutBackgroundImage")?.Url() ?? "/path/to/default-image.jpg";
+
+    var aboutQuote = Model.Value<string>("aboutMainContentQuote") ?? "We have over 25 years of experience providing expert financial advice to both businesses and individuals.";
+    var aboutMainText = Model.Value<string>("aboutMainContentText") ?? "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vitae metus a massa lobortis sollicitudin. Cras ut nulla quam. Maecenas tempus felis quis lorem malesuada vehicular.\n\nMorbi commodo, eros quis consequat consequat, orci lacus auctor ligula, ut maximus arcu sapien nec elit. Suspendisse rutrum.\n\nCras auctor, dui eu eleifend malesuada, nunc dui pretium urna, id euismod orci urna non est. Pellentesque imperdiet tortor ut elementum viverra.";
+    var aboutImage = Model.Value<IPublishedContent>("aboutMainContentImage")?.Url() ?? "/path/to/default-image.jpg";
+    var aboutImageCaption = Model.Value<string>("aboutMainContentImageCaption") ?? "Tina Fox - CEO & Founder at Onatrix";
+
+    var testimonialsTitle = Model.Value<string>("testimonialsSectionTitle") ?? "GREAT REVIEWS FOR OUR SERVICES";
+    var testimonialsHeadline = Model.Value<string>("testimonialsHeadline") ?? "Trusted by some Biggest Names";
+    var testimonialsQuote = Model.Value<string>("testimonialsQuote") ?? "Seamlessly visualize quality intellectual capital without superior collaboration and idea-sharing. Holistically pontificate installed base portals.";
+    var testimonialsMainImage = Model.Value<IPublishedContent>("testimonialsMainImage")?.Url() ?? "/path/to/default-testimonials-image.jpg";
+    var testimonialsSignatureImage = Model.Value<IPublishedContent>("testimonialsSignatureImage")?.Url() ?? "/path/to/default-signature-image.jpg";
+    var testimonialsSignature = Model.Value<string>("testimonialsSignature") ?? "Kevin Gardner";
+    var testimonialsBrand = Model.Value<string>("testimonialsSignatureBrand") ?? "Swebank";
+
+    var ourTeamSectionTitle = Model.Value<string>("ourTeamSectionTitle") ?? "Our Team";
+    var ourTeamSectionHeadline = Model.Value<string>("ourTeamSectionHeadline") ?? "Meet the People Behind Our Success";
+    var ourTeamMembers = Model.ChildrenOfType("teamMember").ToList(); 
+}
+@Html.Partial("headerSectionPartial")
+<section id="about-page" class="about-page">
+    <div class="about-page-container">
+        <div class="about-page-image-container">
+            <img src="@aboutImage" alt="@aboutImageCaption" class="about-page-image" />
+            <figcaption class="about-page-caption">@aboutImageCaption</figcaption>
+        </div>
+
+        <div class="about-page-content">
+            <blockquote class="about-page-quote">@aboutQuote</blockquote>
+            @Html.Raw(aboutMainText.Replace("\n", "<br/>"))
+        </div>
+    </div>
+</section>
+<section id="testimonials-section" class="testimonials-section">
+    <div class="testimonials-container">
+        <div class="testimonials-content">
+            <h2 class="testimonials-title">@testimonialsTitle</h2>
+            <h3 class="testimonials-headline">@testimonialsHeadline</h3>
+            <blockquote class="testimonials-quote">@testimonialsQuote</blockquote>
+            <div class="testimonials-signature">
+                <img src="@testimonialsSignatureImage" alt="@testimonialsSignature" class="testimonials-signature-image" />
+                <p class="testimonials-signature-name">@testimonialsSignature</p>
+                <p class="testimonials-signature-brand">@testimonialsBrand</p>
+            </div>
+        </div>
+        <div class="testimonials-image-container">
+            <img src="@testimonialsMainImage" alt="Testimonials Image" class="testimonials-main-image" />
+        </div>
+    </div>
+</section>
+<section id="our-team-section" class="our-team-section">
+    <div class="container">
+        <h2 class="our-team-title">@ourTeamSectionTitle</h2>
+        <h3 class="our-team-headline">@ourTeamSectionHeadline</h3>
+
+        <div class="row team-row large-team-row">
+            @for (int i = 0; i < ourTeamMembers.Count && i < 3; i++)
+            {
+                var teamMember = ourTeamMembers[i];
+                var name = teamMember.Value<string>("memberName");
+                var description = teamMember.Value<string>("description");
+                var imageUrl = teamMember.Value<IPublishedContent>("image")?.Url();
+
+                <div class="col-md-4 team-member large-team-member">
+                    <div class="team-member-content">
+                        <img src="@imageUrl" alt="@name" class="team-member-image" />
+                        <h4 class="team-member-name">@name</h4>
+                        <p class="team-member-description">@description</p>
+                    </div>
+                </div>
+            }
+        </div>
+
+        <div class="row team-row small-team-row">
+            @for (int i = 3; i < ourTeamMembers.Count && i < 7; i++)
+            {
+                var teamMember = ourTeamMembers[i];
+                var name = teamMember.Value<string>("memberName");
+                var description = teamMember.Value<string>("description");
+                var imageUrl = teamMember.Value<IPublishedContent>("image")?.Url();
+
+                <div class="col-md-3 team-member small-team-member">
+                    <div class="team-member-content">
+                        <img src="@imageUrl" alt="@name" class="team-member-image" />
+                        <h4 class="team-member-name">@name</h4>
+                        <p class="team-member-description">@description</p>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</section>
+@Html.Partial("contactSectionPartial")

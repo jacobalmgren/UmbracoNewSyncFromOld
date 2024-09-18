@@ -1,0 +1,58 @@
+﻿@using Umbraco.Cms.Web.Common.PublishedModels;
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage
+
+@{
+    
+    var isServicesPage = Model.Name == "Services";
+    var ourServicesSectionTitle = Model.Value<string>("ourServicesSectionTitle") ?? Model.Root().Value<string>("ourServicesSectionTitle") ?? "Our Services";
+    var ourServicesHeadline = Model.Value<string>("ourServicesHeadline") ?? Model.Root().Value<string>("ourServicesHeadline") ?? "What We Do";
+    var ourServicesItems = Model.ChildrenOfType("ourServices").Any() ? Model.ChildrenOfType("ourServices").ToList() : Model.Root().ChildrenOfType("ourServices").ToList();
+    var itemCounter = 1; 
+}
+
+<section id="our-services" class="our-services @(isServicesPage ? "white-bg" : "")">
+    <div class="container">
+        <h2 class="our-services-title">@ourServicesSectionTitle</h2>
+        <h3 class="our-services-headline">@ourServicesHeadline</h3>
+
+        <div class="row services-row">
+            @foreach (var service in ourServicesItems)
+            {
+                var serviceTitle = service.Value<string>("ourServicesTitle");
+                var serviceImage = service.Value<IPublishedContent>("ourServicesImage")?.Url();
+                var serviceDescription = service.Value<string>("ourServicesDescription");
+                var serviceUrl = service.Url(); 
+
+                var customServiceUrl = itemCounter == 1 
+                    ? "/services/risk-management"
+                    : itemCounter == 2 
+                        ? "/services/bonds-commodities"
+                        : itemCounter == 3
+                            ? "/services/assurance-audits"
+                            : itemCounter == 4
+                                ? "/services/tax-and-trusts"
+                                : itemCounter == 5
+                                    ? "/services/financial-advisor"
+                                    : itemCounter == 6
+                                        ? "/services/statistic-advisors"
+                                        : serviceUrl;
+
+                <div class="col-md-4 service-item bounce-effect">
+                    <a href="@customServiceUrl" class="service-link">
+                        <div class="service-content">
+                            <h4 class="service-title">@serviceTitle</h4>
+                            <img src="@serviceImage" alt="@serviceTitle" class="service-image" />
+                            <p class="service-description">@serviceDescription</p>
+                        </div>
+                    </a>
+                </div>
+
+                itemCounter++;
+            }
+        </div>
+        @if (isServicesPage)
+        {
+        @Html.Partial("PaginationPartial", isServicesPage)
+        }
+    </div>
+</section>

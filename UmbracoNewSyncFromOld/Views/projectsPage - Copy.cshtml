@@ -1,0 +1,82 @@
+﻿@using Umbraco.Cms.Web.Common.PublishedModels;
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage
+
+@{
+    Layout = "mainLayout.cshtml";
+
+    var projects = Model.ChildrenOfType("projectsDetail").ToList(); 
+
+    var tagSectionTitle = Model.Value<string>("tagSectionTitle") ?? "Tags"; 
+    var globalProjectTags = Model.Value<IEnumerable<string>>("globalProjectTags") ?? Enumerable.Empty<string>();
+
+    var aboutHeadline = Model.Name == "Projects" ? "Our Projects" : Model.Value<string>("aboutHeadline") ?? "Our Projects";
+    var aboutBackToHomepage = Model.Value<IPublishedContent>("aboutBackToHomepage");
+    var aboutPagepicker = Model.Value<IPublishedContent>("aboutPagepicker");
+    var aboutBackgroundImage = Model.Value<IPublishedContent>("aboutBackgroundImage")?.Url() ?? "/path/to/default-image.jpg";
+
+    var showPagination = true;
+}
+@Html.Partial("headerSectionPartial")
+<section id="projects-section" class="projects-section">
+    <div class="projects-container">
+        <div class="container-left">
+            <div class="projects-grid">
+                @foreach (var project in projects)
+                {
+                    var projectTitle = project.Value<string>("projectTitle");
+                    var projectImage = project.Value<IPublishedContent>("projectImage")?.Url();
+                    var projectDate = project.Value<DateTime>("projectDate").ToString("MMMM dd, yyyy");
+                    var projectDescription = project.Value<string>("projectDescription");
+                    var readMoreText = project.Value<string>("readMoreText") ?? "Read More";
+                    var readMoreUrl = project.Value<IPublishedContent>("readMoreUrl")?.Url() ?? project.Url();
+
+                    var projectDateImage = project.Value<IPublishedContent>("projectDateImage")?.Url();
+                    var readMoreArrowImage = project.Value<IPublishedContent>("readMoreArrowImage")?.Url();
+
+                    <div class="project-item">
+                        <img src="@projectImage" alt="@projectTitle" class="project-image" />
+                        <div class="project-info">
+                            <h3 class="project-title">@projectTitle</h3>
+                            <div class="project-meta">
+                                @if (!string.IsNullOrEmpty(projectDateImage))
+                                {
+                                    <img src="@projectDateImage" alt="Date Icon" class="date-icon" />
+                                }
+                                <span class="project-date">@projectDate</span>
+                            </div>
+                            <p class="project-description">@projectDescription</p>
+                            <a href="@readMoreUrl" class="read-more-btn">
+                                @readMoreText
+                                @if (!string.IsNullOrEmpty(readMoreArrowImage))
+                                {
+                                    <img src="@readMoreArrowImage" alt="Arrow Icon" class="arrow-icon" />
+                                }
+                            </a>
+                        </div>
+                    </div>
+
+                    @if (project != projects.Last()) {
+                        <div class="project-divider"></div>
+                    }
+                }
+            </div>
+            @Html.Partial("PaginationPartial", showPagination)
+        </div>
+
+        <div class="container-right">
+            <div class="divider-vertical"></div> 
+
+            <div class="tags-section">
+                <h3 class="tags-title">@tagSectionTitle</h3>
+                <div class="tags-container">
+                    @foreach (var tag in globalProjectTags)
+                    {
+                        <span class="tag">@tag</span>
+                    }
+                </div>
+                @Html.Partial("ServiceEmailFormPartial")
+            </div>
+        </div>
+    </div>
+</section>
+@Html.Partial("contactSectionPartial")

@@ -1,0 +1,52 @@
+﻿@using Umbraco.Cms.Web.Common.PublishedModels;
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage
+
+@{
+    var contactSectionTitle = Model.Value<string>("contactInfoSectionTitle");
+    var contactLocationHeadline = Model.Value<string>("contactInfoLocationHeadline");
+    var contactLocationInfo = Model.Value<string>("contactInfoLocationInfo");
+    var contactPhoneNumberHeadline = Model.Value<string>("contactInfoPhoneNumberHeadline");
+    var contactPhoneNumberInfo = Model.Value<string>("contactInfoPhoneNumberInfo");
+    var contactEmailAddressHeadline = Model.Value<string>("contactInfoEmailAddressHeadline");
+    var contactEmailAddressInfo = Model.Value<string>("contactInfoEmailAddressInfo");
+    var contactBackgroundImage = Model.Value<IPublishedContent>("contactInfoBackgroundImage")?.Url() ?? "/path/to/default-contact-image.jpg";
+    var contactLocationIcon = Model.Value<IPublishedContent>("contactInfoLocationIcon")?.Url();
+    var contactPhoneIcon = Model.Value<IPublishedContent>("contactInfoPhoneNumberIcon")?.Url();
+    var contactEmailIcon = Model.Value<IPublishedContent>("contactInfoEmailAddressIcon")?.Url();
+    var contactInfoBackgroundDot = Model.Value<IPublishedContent>("contactInfoBackgroundDot")?.Url();
+    var contactInfoBackgroundFigure = Model.Value<IPublishedContent>("contactInfoBackgroundFigure")?.Url();
+}
+
+<section id="contact-section" class="contact-section">
+    <div class="contact-grid">
+        <div class="contact-image-container">
+            <img src="@contactBackgroundImage" alt="Background Image" class="contact-background-image">
+            <img src="@contactInfoBackgroundDot" alt="Dot Image" class="contact-dot-image">
+            <img src="@contactInfoBackgroundFigure" alt="Figure Image" class="contact-figure-image">
+        </div>
+        <div class="contact-info-container">
+            <h2 class="contact-title">@contactSectionTitle</h2>
+            <div class="contact-info">
+                <div class="contact-info-header">
+                    <img src="@contactLocationIcon" alt="Location Icon" class="contact-icon">
+                    <h4 class="contact-headline">@contactLocationHeadline</h4>
+                </div>
+                <p class="contact-info-text">@contactLocationInfo</p>
+            </div>
+            <div class="contact-info">
+                <div class="contact-info-header">
+                    <img src="@contactPhoneIcon" alt="Phone Icon" class="contact-icon">
+                    <h4 class="contact-headline">@contactPhoneNumberHeadline</h4>
+                </div>
+                <p class="contact-info-text">@contactPhoneNumberInfo</p>
+            </div>
+            <div class="contact-info">
+                <div class="contact-info-header">
+                    <img src="@contactEmailIcon" alt="Email Icon" class="contact-icon">
+                    <h4 class="contact-headline">@contactEmailAddressHeadline</h4>
+                </div>
+                <p class="contact-info-text">@contactEmailAddressInfo</p>
+            </div>
+        </div>
+    </div>
+</section>

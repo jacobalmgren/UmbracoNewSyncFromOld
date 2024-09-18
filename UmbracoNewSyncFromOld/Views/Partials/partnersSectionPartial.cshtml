@@ -1,0 +1,19 @@
+﻿@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage
+
+@if (Model.Value<IEnumerable<IPublishedContent>>("partnersImages") != null)
+{
+    var partnersImages = Model.Value<IEnumerable<IPublishedContent>>("partnersImages");
+
+    <section id="partners" class="partners">
+        <div class="container">
+            <div class="row partners-row">
+                @foreach (var partnerImage in partnersImages)
+                {
+                    <div class="col-6 col-md-4 col-lg-2 partner-item">
+                        <img src="@partnerImage.Url()" alt="Partner Logo" class="partner-image" />
+                    </div>
+                }
+            </div>
+        </div>
+    </section>
+}

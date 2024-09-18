@@ -1,0 +1,144 @@
+﻿@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<IPublishedContent>
+
+@{
+    Layout = "mainLayout.cshtml";
+
+    var serviceTitle = Model.Value<string>("ourServicesTitle");
+    var serviceImage = Model.Value<IPublishedContent>("ourServicesImage")?.Url();
+    var serviceDescription = Model.Value<string>("ourServicesDescription");
+
+    var headline1 = Model.Value<string>("headline1");
+    var headline1Image = Model.Value<IPublishedContent>("headline1Image")?.Url();
+    var headline1List = Model.Value<string>("headline1List");
+
+    var headline2 = Model.Value<string>("headline2");
+    var headline2Image = Model.Value<IPublishedContent>("headline2Image")?.Url();
+    var headline2FirstText = Model.Value<string>("headline2FirstText")?.Replace("\n", "<br />");
+    var headline2SecondText = Model.Value<string>("headline2SecondText")?.Replace("\n", "<br />");
+    var headline2List = Model.Value<string>("headline2List");
+
+    var headline3 = Model.Value<string>("headline3");
+    var headline3Image = Model.Value<IPublishedContent>("headline3Image")?.Url();
+    var headline3Description = Model.Value<string>("headline3Description");
+    var headline3List = Model.Value<string>("headline3List");
+
+    var leftHeadline = Model.Value<string>("leftHeadline");
+    var leftImage = Model.Value<IPublishedContent>("leftImage")?.Url();
+    var leftText = Model.Value<string>("leftText");
+
+    var form2Headline = Model.Value<string>("form2Headline") ?? "Have a question?";
+    var form2NamePlaceholder = Model.Value<string>("form2NamePlaceholder") ?? "Name";
+    var form2EmailPlaceholder = Model.Value<string>("form2EmailPlaceholder") ?? "Email Address";
+    var form2QuestionPlaceholder = Model.Value<string>("form2QuestionPlaceholder") ?? "Your Question";
+    var form2SubmitText = Model.Value<string>("form2SubmitText") ?? "Submit";
+}
+@Html.Partial("headerSectionPartial")
+<section class="content-wrapper">
+    <div class="service-container">
+        <div class="service-container-left">
+            <h3>@leftHeadline</h3>
+            @if (!string.IsNullOrEmpty(leftImage))
+            {
+                <img src="@leftImage" alt="@leftHeadline" class="left-image" />
+            }
+            <p class="left-text">@leftText</p>
+
+            @Html.Partial("ServiceEmailFormPartial")
+
+        </div>
+
+        <div class="service-divider"></div>
+
+        <div class="service-container-right">
+            <h2>@serviceTitle</h2>
+            @if (!string.IsNullOrEmpty(serviceImage))
+            {
+                <img src="@serviceImage" alt="@serviceTitle" />
+            }
+            <p>@serviceDescription</p>
+
+            @if (!string.IsNullOrEmpty(headline1))
+            {
+                <div class="service-headline-section">
+                    @if (!string.IsNullOrEmpty(headline1Image))
+                    {
+                        <img src="@headline1Image" alt="@headline1" />
+                    }
+                    <h3>@headline1</h3>
+                    @if (!string.IsNullOrEmpty(headline1List))
+                    {
+                        <div style="padding-left: 20px;">
+                            @Html.Raw(headline1List)
+                        </div>
+                    }
+                </div>
+            }
+
+            @if (!string.IsNullOrEmpty(headline2))
+            {
+                <div class="service-headline-section">
+                    <h3>@headline2</h3>
+                    @if (!string.IsNullOrEmpty(headline2FirstText))
+                    {
+                        <p>@Html.Raw(headline2FirstText)</p>
+                    }
+
+                    @if (!string.IsNullOrEmpty(headline2List))
+                    {
+                        <div style="padding-left: 20px;">
+                            @Html.Raw(headline2List)
+                        </div>
+                    }
+
+                    @if (!string.IsNullOrEmpty(headline2SecondText))
+                    {
+                        <p>@Html.Raw(headline2SecondText)</p>
+                    }
+
+                    @if (!string.IsNullOrEmpty(headline2Image))
+                    {
+                        <img src="@headline2Image" alt="@headline2" />
+                    }
+                </div>
+            }
+
+            @if (!string.IsNullOrEmpty(headline3))
+            {
+                <div class="service-headline-section">
+                    @if (!string.IsNullOrEmpty(headline3Image))
+                    {
+                        <img src="@headline3Image" alt="@headline3" />
+                    }
+                    <h3>@headline3</h3>
+
+                    <p>@headline3Description</p>
+
+                    @if (!string.IsNullOrEmpty(headline3List))
+                    {
+                        <div style="padding-left: 20px;">
+                            @Html.Raw(headline3List)
+                        </div>
+                    }
+                </div>
+            }
+        </div>
+    </div>
+</section>
+<section class="service-full-form-container">
+    <h3>@form2Headline</h3>
+    <form action="#" method="POST" class="service-question-form">
+        <div class="service-form-row">
+            <div class="service-form-col">
+                <input type="text" name="name" placeholder="@form2NamePlaceholder" required />
+            </div>
+            <div class="service-form-col">
+                <input type="email" name="email" placeholder="@form2EmailPlaceholder" required />
+            </div>
+        </div>
+        <div class="service-form-row">
+            <textarea name="question" placeholder="@form2QuestionPlaceholder" required></textarea>
+        </div>
+        <button type="submit" class="service-submit-button">@form2SubmitText</button>
+    </form>
+</section>
+@Html.Partial("contactSectionPartial")

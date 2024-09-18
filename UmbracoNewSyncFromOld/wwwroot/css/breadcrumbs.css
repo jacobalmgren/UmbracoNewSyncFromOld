@@ -1,0 +1,62 @@
+﻿.breadcrumb-and-pagepicker {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    padding: 10px 0;
+}
+
+.breadcrumb-link,
+.pagepicker-link {
+    font-size: 1rem;
+    text-decoration: none;
+    padding: 5px 10px;
+    color: #4F5955;
+    transition: color 0.3s ease;
+}
+
+    .breadcrumb-link.active,
+    .pagepicker-link.active {
+        color: #D9C3A9;
+    }
+
+
+@media only screen and (max-width: 767px) {
+    .breadcrumb-and-pagepicker {
+        flex-direction: row; 
+        flex-wrap: wrap; /
+        padding: 10px 0;
+    }
+
+    .breadcrumb-link,
+    .pagepicker-link {
+        font-size: 0.9rem; 
+        padding: 5px 8px; 
+    }
+}
+
+@media only screen and (min-width: 768px) and (max-width: 1023px) {
+    .breadcrumb-and-pagepicker {
+        flex-direction: row; 
+        padding: 15px 0;
+    }
+
+    .breadcrumb-link,
+    .pagepicker-link {
+        font-size: 1rem;
+        padding: 10px 15px;
+    }
+}
+
+@media only screen and (min-width: 1024px) {
+    .breadcrumb-and-pagepicker {
+        flex-direction: row;
+        padding: 10px 0;
+    }
+
+    .breadcrumb-link,
+    .pagepicker-link {
+        font-size: 1rem;
+        padding: 5px 10px; 
+    }
+}

@@ -1,0 +1,81 @@
+﻿@using Umbraco.Cms.Web.Common.PublishedModels;
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage
+@{
+	Layout = null;
+	var keywordsList = Model.Value<IEnumerable<string>>("pageKeywords");
+	var keywords = keywordsList != null ? string.Join(", ", keywordsList) : "";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://kit.fontawesome.com/a576612222.css" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <title>@Model.Value("pageTitle")</title>
+    <meta name="description" content="@Model.Value("pageDescription")">
+    <meta name="keywords" content="@keywords">
+    <link rel="stylesheet" href="/css/main.css?v=1.0">
+    <link rel="stylesheet" href="/css/header.css?v=1.0">
+    <link rel="stylesheet" href="/css/hero.css?v=1.0">
+    <link rel="stylesheet" href="/css/animations.css?v=1.0">
+    <link rel="stylesheet" href="/css/footer.css?v=1.0">
+    <link rel="stylesheet" href="/css/reset.css?v=1.0">
+    <link rel="stylesheet" href="/css/backtotop.css?v=1.0">
+    <link rel="stylesheet" href="/css/breadcrumbs.css?v=1.0">
+    <link rel="stylesheet" href="/css/components.css?v=1.0">
+    <link rel="stylesheet" href="/css/contactsection.css?v=1.0">
+    <link rel="stylesheet" href="/css/sections.css?v=1.0">
+    <link rel="stylesheet" href="/css/project.css?v=1.0">
+    <link rel="stylesheet" href="/css/form.css?v=1.0">
+</head>
+<body>
+    <div class="wrapper">
+        <header>
+            <section class="topbar">
+                <div class="container">
+                    <div class="address">Klarabergsviadukten 90, 111 64 Stockholm</div>
+                    <div class="socialmedia">
+                        <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+                        <a href="#"><i class="fa-brands fa-x-twitter"></i></a>
+                        <a href="#"><i class="fa-brands fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+            </section>
+            <div class="navbar">
+                <div class="container">
+                    <a class="logo" href="/">
+                        <img src="/media/a2ochenl/brand.svg">
+                    </a>
+                    <nav>
+                        <a class="nav-link" href="/about">About</a>
+                        <a class="nav-link" href="/services">Services</a>
+                        <a class="nav-link" href="/projects">Projects</a>
+                        <a class="nav-link" href="/contact">Contact</a>
+                    </nav>
+                    <div class="search">
+                        <i class="fa-regular fa-magnifying-glass"></i>
+                    </div>
+                    <div class="hamburger" onclick="toggleMenu()">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <main>
+            @RenderBody()
+        </main>
+        <footer>
+            <div class="container">
+                <p class="copyright">© Onatrix. All Rights Reserved.</p>
+                <p class="credits">Credits to <a href="https://themeforest.net/user/themesflat/portfolio">Themesflat</a></p>
+            </div>
+        </footer>
+    </div>
+    <button id="back-to-top" title="Go to top">↑</button>
+    <script src="/scripts/main.js?v=1.0"></script>
+</body>
+</html>

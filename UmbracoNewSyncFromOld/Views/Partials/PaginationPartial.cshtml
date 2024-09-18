@@ -1,0 +1,14 @@
+﻿@using Umbraco.Cms.Web.Common.PublishedModels;
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<bool> 
+
+@{
+    if (Model)
+    {
+        <div class="pagination">
+            <a href="#" class="pagination-prev">Prev</a>
+            <a href="#" class="pagination-page active">1</a>
+            <a href="#" class="pagination-page">2</a>
+            <a href="#" class="pagination-next">Next</a>
+        </div>
+    }
+}

@@ -1,0 +1,243 @@
+﻿.pagination {
+    text-align: center;
+    margin-top: 30px;
+}
+
+    .pagination a {
+        display: inline-block;
+        margin: 0 10px;
+        padding: 10px 15px;
+        text-decoration: none;
+        color: #4B5264;
+        font-weight: bold;
+        transition: color 0.3s ease;
+    }
+
+.pagination-prev {
+    color: #EAEAEA;
+    border: none;
+}
+
+.pagination-next {
+    color: #4F5955;
+    border: none;
+}
+
+.pagination-page {
+    width: 50px;
+    height: 50px;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    transition: border-color 0.3s ease, color 0.3s ease;
+    padding: 0;
+    border: 1px solid transparent;
+}
+
+    .pagination-page:hover {
+        color: #EAEAEA;
+    }
+
+.pagination .active {
+    border: 1px solid #ECECEC;
+    color: #333;
+}
+
+.pagination-prev:hover,
+.pagination-next:hover {
+    color: #EAEAEA;
+}
+
+.pagination .disabled {
+    color: #ccc;
+    pointer-events: none;
+}
+
+.tags-section {
+    padding-left: 10px;
+    margin-bottom: 40px;
+}
+
+.tags-title {
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+.tags-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    justify-content: left;
+    margin-bottom: 40px;
+}
+
+.tag {
+    color: #4F5955;
+    padding: 10px 15px;
+    border-radius: 25px;
+    font-size: 13px;
+    text-align: left;
+    border: 1px solid #E6E6E6;
+    cursor: pointer;
+}
+
+    .tag:hover {
+        background-color: #394A47;
+        color: #fff;
+    }
+
+.service-link {
+    text-decoration: none;
+    color: inherit;
+}
+
+    .service-link:hover .service-title {
+        color: #D9C3A9;
+    }
+
+.partners-row {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+.btn-primary {
+    background-color: #4F5955;
+    color: #F2EDDC;
+    padding: 10px 20px;
+    text-decoration: none;
+    display: inline-block;
+    margin: 40px 0;
+    position: relative;
+    z-index: 3;
+    border-radius: 5px;
+    font-weight: bold;
+}
+
+    .btn-primary:hover {
+        background-color: #D9C3A9;
+        color: #4F5955;
+    }
+
+@media only screen and (max-width: 767px) {
+
+    .pagination {
+        text-align: center;
+        margin-top: -40px;
+    }
+
+        .pagination a {
+            font-size: 12px;
+            margin: 0 5px;
+            padding: 8px 10px;
+        }
+
+    .pagination-page {
+        width: 40px;
+        height: 40px;
+    }
+
+    .tags-title {
+        font-size: 1.2rem;
+        margin-bottom: 15px;
+    }
+
+    .tags-container {
+        gap: 10px;
+    }
+
+    .tag {
+        font-size: 12px;
+        padding: 8px 12px;
+    }
+
+    .partners-row {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .btn-primary {
+        font-size: 14px;
+        padding: 8px 15px;
+        margin: 30px 0;
+    }
+}
+
+@media only screen and (min-width: 768px) and (max-width: 1023px) {
+
+    .pagination a {
+        font-size: 14px;
+        margin: 0 7px;
+        padding: 10px 12px;
+    }
+
+    .pagination-page {
+        width: 45px;
+        height: 45px;
+    }
+
+    .tags-title {
+        font-size: 1.3rem;
+        margin-bottom: 20px;
+    }
+
+    .tags-container {
+        gap: 12px;
+    }
+
+    .tag {
+        font-size: 13px;
+        padding: 10px 15px;
+    }
+
+    .partners-row {
+        justify-content: space-between;
+    }
+
+    .btn-primary {
+        font-size: 15px;
+        padding: 10px 20px;
+        margin: 40px 0;
+    }
+}
+
+@media only screen and (min-width: 1024px) {
+
+    .pagination a {
+        font-size: 16px;
+        margin: 0 10px;
+        padding: 10px 15px;
+    }
+
+    .pagination-page {
+        width: 50px;
+        height: 50px;
+    }
+
+    .tags-title {
+        font-size: 1.5rem;
+        margin-bottom: 20px;
+    }
+
+    .tags-container {
+        gap: 15px;
+    }
+
+    .tag {
+        font-size: 14px;
+        padding: 10px 15px;
+    }
+
+    .partners-row {
+        flex-direction: row;
+        justify-content: space-around;
+    }
+
+    .btn-primary {
+        font-size: 16px;
+        padding: 12px 25px;
+        margin: 50px 0;
+    }
+}

@@ -1,0 +1,198 @@
+﻿.hero {
+    position: relative;
+    color: white;
+    padding: 100px 0;
+    text-align: center;
+}
+
+    .hero .background {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: -1;
+        opacity: 0.7;
+    }
+
+    .hero .container {
+        position: relative;
+        z-index: 1;
+    }
+
+    .hero h1.headline {
+        font-size: 3.5rem;
+        margin-bottom: 1rem;
+        color: #4F5955;
+        max-width: 500px;
+        text-align: left;
+        line-height: 1.2;
+    }
+
+    .hero p.ingress {
+        font-size: 1.2rem;
+        margin-bottom: 2rem;
+        color: #4F5955;
+        max-width: 600px;
+        text-align: left;
+    }
+
+    .hero .btn-primary {
+        padding: 10px 20px;
+        background-color: #4F5955;
+        color: #F2EDDC;
+        text-decoration: none;
+        display: inline-block;
+        font-weight: bold;
+    }
+
+    .hero .container > div {
+        text-align: left;
+    }
+
+    .hero .btn-primary:hover {
+        background-color: #F2EDDC;
+        color: #4F5955;
+    }
+
+@media only screen and (max-width: 767px) {
+
+    .hero {
+        padding: 50px 0;
+        text-align: center;
+    }
+
+        .hero h1.headline {
+            font-size: 2rem;
+            text-align: center;
+            max-width: 100%; 
+        }
+
+        .hero p.ingress {
+            font-size: 1rem;
+            text-align: center;
+            max-width: 100%; 
+        }
+
+        .hero .btn-primary {
+            padding: 8px 15px;
+            font-size: 1rem;
+        }
+
+        .hero .container > div {
+            text-align: center; 
+        }
+}
+
+@media only screen and (min-width: 768px) and (max-width: 1023px) {
+
+    .hero {
+        padding: 80px 0;
+    }
+
+        .hero h1.headline {
+            font-size: 2.5rem;
+        }
+
+        .hero p.ingress {
+            font-size: 1.1rem;
+        }
+
+        .hero .btn-primary {
+            padding: 10px 20px;
+        }
+}
+
+@media only screen and (min-width: 1024px) {
+
+    .hero h1.headline {
+        font-size: 3.5rem;
+    }
+
+    .hero p.ingress {
+        font-size: 1.2rem;
+    }
+
+    .hero .btn-primary {
+        padding: 10px 20px;
+    }
+}
+
+.hero-about {
+    padding: 100px 0;
+    background-size: cover;
+    background-position: center;
+    color: #4F5955;
+    position: relative;
+}
+
+    .hero-about::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: #F7F7F7;
+        opacity: 0.5;
+        z-index: 1;
+    }
+
+    .hero-about .container {
+        position: relative;
+        z-index: 2;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        color: #4F5955;
+    }
+
+    .hero-about .headline {
+        font-size: 2rem;
+        margin-bottom: 10px;
+        color: #4F5955;
+        z-index: 2;
+        font-weight: bold;
+    }
+
+@media only screen and (max-width: 767px) {
+
+    .hero-about {
+        padding: 50px 0;
+    }
+
+        .hero-about .headline {
+            font-size: 1.8rem;
+        }
+
+        .hero-about .container {
+            padding: 0 15px;
+        }
+}
+
+@media only screen and (min-width: 768px) and (max-width: 1023px) {
+
+    .hero-about {
+        padding: 80px 0;
+    }
+
+        .hero-about .headline {
+            font-size: 2rem;
+        }
+
+        .hero-about .container {
+            padding: 0 30px;
+        }
+}
+
+@media only screen and (min-width: 1024px) {
+
+    .hero-about {
+        padding: 100px 0;
+    }
+
+        .hero-about .headline {
+            font-size: 2.5rem;
+        }
+}

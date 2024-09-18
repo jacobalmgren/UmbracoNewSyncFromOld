@@ -1,0 +1,63 @@
+﻿@using Umbraco.Cms.Web.Common.PublishedModels;
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage
+
+@{
+    var heroTitle = Model.Value<string>("heroTitle") ?? "Default Title";
+    var aboutPagepicker = Model.Value<IPublishedContent>("aboutPagepicker");
+    var aboutBackgroundImage = Model.Value<IPublishedContent>("aboutBackgroundImage")?.Url() ?? "/path/to/default-image.jpg";
+    var currentPageUrl = Model.Url();
+    var servicesPage = Model.AncestorsOrSelf().FirstOrDefault(x => x.ContentType.Alias == "servicesPage");
+    var isServiceDetailPage = Model.ContentType.Alias == "serviceDetail";
+    var projectsPage = Model.AncestorsOrSelf().FirstOrDefault(x => x.ContentType.Alias == "projectsPage");
+    var isProjectDetailPage = Model.ContentType.Alias == "projectsDetail";
+    var projectTitle = isProjectDetailPage ? Model.Value<string>("heroTitle") : null;
+}
+
+<section id="hero-about" class="hero-about" style="background-image:url('@aboutBackgroundImage');">
+    <div class="container">
+        <h1 class="headline">
+            @if (isServiceDetailPage && !string.IsNullOrEmpty(heroTitle))
+            {
+                @heroTitle
+            }
+            else if (isProjectDetailPage && !string.IsNullOrEmpty(heroTitle))
+            {
+                @heroTitle
+            }
+            else
+            {
+                @heroTitle
+            }
+        </h1> 
+        <div class="breadcrumb-and-pagepicker">
+            <div class="breadcrumb">
+                <a href="/" class="breadcrumb-link">Home ></a>
+
+                @if (isServiceDetailPage && servicesPage != null)
+                {
+                    <a href="@servicesPage.Url()" class="breadcrumb-link">Services ></a>
+
+                    @if (!string.IsNullOrEmpty(heroTitle))
+                    {
+                        <span class="breadcrumb-link active">@heroTitle</span>
+                    }
+                }
+                else if (isProjectDetailPage && projectsPage != null)
+                {
+                    <a href="@projectsPage.Url()" class="breadcrumb-link">Projects ></a>
+
+                    @if (!string.IsNullOrEmpty(heroTitle))
+                    {
+                        <span class="breadcrumb-link active">@heroTitle</span>
+                    }
+                }
+                else if (aboutPagepicker != null)
+                {
+                    <a href="@aboutPagepicker.Url()" class="breadcrumb-link @(currentPageUrl == aboutPagepicker.Url() ? "active" : "")">
+                        @aboutPagepicker.Name
+                    </a>
+                }
+            </div>
+        </div>
+    </div>
+</section>

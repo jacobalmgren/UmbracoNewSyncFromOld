@@ -1,0 +1,15 @@
+﻿@using Umbraco.Cms.Web.Common.PublishedModels;
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage
+
+@{
+    Layout = "mainLayout.cshtml";
+
+    var aboutHeadline = Model.Name == "Services" ? "Our Services" : Model.Value<string>("aboutHeadline") ?? "Our Services";
+
+    var aboutBackToHomepage = Model.Value<IPublishedContent>("aboutBackToHomepage");
+    var aboutPagepicker = Model.Value<IPublishedContent>("aboutPagepicker");
+    var aboutBackgroundImage = Model.Value<IPublishedContent>("aboutBackgroundImage")?.Url() ?? "/path/to/default-image.jpg";
+}
+@Html.Partial("headerSectionPartial")
+@Html.Partial("ourServicesSectionPartial")
+@Html.Partial("contactSectionPartial")

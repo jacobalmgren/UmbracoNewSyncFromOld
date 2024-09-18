@@ -1,0 +1,21 @@
+﻿@using Umbraco.Cms.Web.Common.PublishedModels;
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage
+
+@{
+    var formHeadline = Model.Value<string>("formHeadline");
+    var formDescription = Model.Value<string>("formDescription");
+    var formImage = Model.Value<IPublishedContent>("formImage")?.Url();
+}
+
+<div class="service-form-box">
+    <h4>@formHeadline</h4>
+    <p>@formDescription</p>
+    <form action="#" method="POST" class="service-email-form">
+        <div class="service-email-input-container">
+            <input type="email" placeholder="E-mail address" name="email" required />
+            <button type="submit" class="email-submit">
+                <img src="@formImage" alt="Submit Icon" class="email-icon" />
+            </button>
+        </div>
+    </form>
+</div>
