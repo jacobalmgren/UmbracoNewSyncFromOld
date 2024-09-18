@@ -10,6 +10,55 @@
     <EmbeddedResource Remove="uSync\NewFolder\**" />
     <None Remove="uSync\NewFolder\**" />
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="wwwroot\media\14dlzasq\image-18-min-1.png" />
+    <Content Include="wwwroot\media\1emiadfl\img-1-1.png" />
+    <Content Include="wwwroot\media\1mymdksd\sl-home2.png" />
+    <Content Include="wwwroot\media\1u2b4chw\dot.png" />
+    <Content Include="wwwroot\media\2ozbbmqp\img-1-4-1.png" />
+    <Content Include="wwwroot\media\2ympbwcr\video-1.png" />
+    <Content Include="wwwroot\media\52vmhq5d\image-47-1.png" />
+    <Content Include="wwwroot\media\54qpnjch\image-24-min-1.png" />
+    <Content Include="wwwroot\media\a44e0kap\image-23-min-1.png" />
+    <Content Include="wwwroot\media\ad2l25ad\dot-map.png" />
+    <Content Include="wwwroot\media\azfjvrpw\04.png" />
+    <Content Include="wwwroot\media\bjlluyer\03.png" />
+    <Content Include="wwwroot\media\bxfluf0m\image-104-1.png" />
+    <Content Include="wwwroot\media\ckehcazw\vector.png" />
+    <Content Include="wwwroot\media\etvlu3dr\img_choose_01_home01-1.png" />
+    <Content Include="wwwroot\media\g0hn4u3u\img-4-2-1.png" />
+    <Content Include="wwwroot\media\g4mf25uo\image-21-min-1.png" />
+    <Content Include="wwwroot\media\gz5nkm1h\pj3.png" />
+    <Content Include="wwwroot\media\hu4lfnt4\kevin-gardner.png" />
+    <Content Include="wwwroot\media\ilkpuq4k\rating.png" />
+    <Content Include="wwwroot\media\jdrhoqf5\bg-1.png" />
+    <Content Include="wwwroot\media\jful5psh\img.png" />
+    <Content Include="wwwroot\media\jvzhqpxo\06.png" />
+    <Content Include="wwwroot\media\ljqheiql\pj2.png" />
+    <Content Include="wwwroot\media\lz1hw3vt\title.png" />
+    <Content Include="wwwroot\media\m2ibqfhw\img-5-e1695109900349-1.png" />
+    <Content Include="wwwroot\media\mfwikxaw\mask-group-8-1.png" />
+    <Content Include="wwwroot\media\o11kleo4\05.png" />
+    <Content Include="wwwroot\media\o1hlzhgb\img_choose_01_home01-2.png" />
+    <Content Include="wwwroot\media\o4lcx4u5\icon-email.png" />
+    <Content Include="wwwroot\media\oamjlopu\icon-address.png" />
+    <Content Include="wwwroot\media\opcldvfs\img-47-1.png" />
+    <Content Include="wwwroot\media\oq0om3em\dot-map-1.png" />
+    <Content Include="wwwroot\media\peofljme\image-22-min-1.png" />
+    <Content Include="wwwroot\media\pfnhcd03\02.png" />
+    <Content Include="wwwroot\media\pkuoqenq\pj1.png" />
+    <Content Include="wwwroot\media\qxqgpyi4\image-13-min-1.png" />
+    <Content Include="wwwroot\media\r5zluk1v\icon-mail.png" />
+    <Content Include="wwwroot\media\rbvbzkze\arrow.png" />
+    <Content Include="wwwroot\media\thjbbkoe\icon-phone.png" />
+    <Content Include="wwwroot\media\tmmhw2my\icon-calendar.png" />
+    <Content Include="wwwroot\media\tvuak03n\pj4-1.png" />
+    <Content Include="wwwroot\media\tzrjuino\01.png" />
+    <Content Include="wwwroot\media\uwzgqs4z\image-106-1.png" />
+    <Content Include="wwwroot\media\vrrbz1dr\post2-1.png" />
+    <Content Include="wwwroot\media\wbtlujf3\kevin-gardner-1.png" />
+    <Content Include="wwwroot\media\z1td5flb\pj4.png" />
+  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Umbraco.Cms" Version="14.2.0" />
@@ -20,6 +69,12 @@
     <PackageReference Include="Microsoft.ICU.ICU4C.Runtime" Version="72.1.0.3" />
     <PackageReference Include="uSync" Version="14.2.1" />
     <RuntimeHostConfigurationOption Include="System.Globalization.AppLocalIcu" Value="72.1.0.3" Condition="$(RuntimeIdentifier.StartsWith('linux')) or $(RuntimeIdentifier.StartsWith('win')) or ('$(RuntimeIdentifier)' == '' and !$([MSBuild]::IsOSPlatform('osx')))" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="wwwroot\media\0fmbeaee\sl-home2.svg" />
+    <None Include="wwwroot\media\a2ochenl\brand.svg" />
+    <None Include="wwwroot\media\txmj3tzq\onlinesignaturesnet-302-1.svg" />
   </ItemGroup>
 
   <PropertyGroup>
